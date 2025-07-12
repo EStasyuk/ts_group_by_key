@@ -2,17 +2,17 @@ type GroupsMap<T> = {
   [key: string]: T[];
 };
 
-export function groupByKey<T>(items: T[], key: keyof T):Record<string | number | symbol, T[]> {
-  const groupedResult: Record<string | number | symbol, T[]> = {}:
+export function groupByKey<T>(items: T[], key: keyof T): GroupsMap<T> {
+  const groupedResult: GroupsMap<T> = {};
 
   for (const item of items) {
     const groupValue = item[key];
 
-    if (!groupedResult[groupValue as string | number | symbol]) {
-      groupedResult[groupValue as string | number | symbol] = [];
+    if (!groupedResult[groupValue as string]) {
+      groupedResult[groupValue as string] = [];
     }
 
-    groupedResult[groupValue as string | number | symbol].push(item);
+    groupedResult[groupValue as string].push(item);
   }
 
   return groupedResult;
